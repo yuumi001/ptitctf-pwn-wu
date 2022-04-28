@@ -308,24 +308,6 @@ int (*__cdecl wat1(int a1, int a2))()
 Hàm này tiến hành kiểm tra 2 giá trị truyền vào khi gọi hàm, sẽ nên để ý một chút khi viết payload ta cần truyền vào 2 param lần lượt có giá trị là `1987406921` và `1852729677` sau đó sẽ lấy được mảnh flag tiếp theo. Cũng tương tự như ở `vuln` hàm `wat1` có phần check return address bằng `wat2`. 
 Tương tự, dùng `BOF` modify retaddr thành wat2
 
-```
-| 2nd param | low address
-|-----------|
-| 1st param | 
-|-----------|
-|  eip wat1 |
-|-----------| 
-|   wat1    |
-|-----------|
-| saved ebp |
-|-----------| 
-|    v2     |
-|-----------|
-|   s[32]   |
-|           |
-|-----------| high address
-```
-
 Disassemble `wat2()`
 ```
 int wat2()
@@ -351,7 +333,7 @@ int wat2()
 }
 ```
 
-
+Stack layout mong muốn
 ```
 | 2nd param | low address
 |-----------|
