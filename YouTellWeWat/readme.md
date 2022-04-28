@@ -309,6 +309,25 @@ Hàm này tiến hành kiểm tra 2 giá trị truyền vào khi gọi hàm, s�
 Tương tự, dùng `BOF` modify retaddr thành wat2
 
 ```
+| 2nd param | low address
+|-----------|
+| 1st param | 
+|-----------|
+|  eip wat1 |
+|-----------| 
+|   wat1    |
+|-----------|
+| saved ebp |
+|-----------| 
+|    v2     |
+|-----------|
+|   s[32]   |
+|           |
+|-----------| high address
+```
+
+Disassemble `wat2()`
+```
 int wat2()
 {
   int v0; // eax
@@ -330,6 +349,25 @@ int wat2()
     flag3 = v0;
   return print_flag();
 }
+```
+
+
+```
+| 2nd param | low address
+|-----------|
+| 1st param | 
+|-----------|
+|   wat2    |
+|-----------| 
+|   wat1    |
+|-----------|
+| saved ebp |
+|-----------| 
+|    v2     |
+|-----------|
+|   s[32]   |
+|           |
+|-----------| high address
 ```
 
 Tại wat2 sau khi nhập input sẽ gọi hàm `v3(s)` hay `notfun(s)`, hàm `notfun` sẽ tiến hành chấm điểm cho chuỗi nhập vào nếu số điểm bằng `322376503 (0x13371337)` sẽ pass và lấy được mảnh flag cuối cùng
